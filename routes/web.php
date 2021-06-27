@@ -29,6 +29,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group([
         'prefix' => 'user'
     ], function () {
-        Route::get('/', IndexUser::class);
+        Route::get('/', IndexUser::class)->name('users');
     });
 });
