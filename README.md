@@ -1,6 +1,6 @@
 # configuration
 - php artisan migrate for creating database
-- php artisan db:seed for seeding data rekening, because no rekeing crud, so i create seeder
+- php artisan db:seed for seeding data rekening, because no rekening crud, so i create seeder
 
 
 
