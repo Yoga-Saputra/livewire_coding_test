@@ -13,7 +13,7 @@ class MasterDeposit extends Component
 
     public function render()
     {
-        $deposit    = Deposit::with('rekening')->paginate(5);
+        $deposit    = Deposit::with('rekening')->get();
         $count    = Deposit::with('rekening')->where('status', 'Pending')->count();
         // dd($deposit);
         return view('livewire.deposit.master-deposit', [

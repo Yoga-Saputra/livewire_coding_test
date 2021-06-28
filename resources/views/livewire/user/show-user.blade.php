@@ -55,7 +55,7 @@
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>action</th>
+                                <th width="17%">action</th>
                             </tr>
                         </thead>
                         <tbody>
