@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class DeleteUser extends Component
 {
-    public $userId;
+    // public $userId;
     public $name;
     public $email;
     public $password;
@@ -28,11 +28,12 @@ class DeleteUser extends Component
     {
         return view('livewire.user.delete-user');
     }
-    public function delete()
+    public function delete($userId)
     {
         DB::beginTransaction();
         try {
-            User::findOrFail($this->userId)->delete();
+            $usr = User::findOrFail($userId)->get();
+            $usr->delete();
             $this->emit('flashMessage', [
                 'type'  => 'success',
                 'message' => 'User Delete Successfully'
@@ -50,13 +51,13 @@ class DeleteUser extends Component
         DB::commit();
     }
 
-    public function showModal(User $user)
-    {
-        $this->userId = $user->id;
-        $this->name = $user->name;
-        $this->email = $user->email;
-        $this->emit('showModal', 'deleteUserModal');
-    }
+    // public function showModal(User $user)
+    // {
+    //     $this->userId = $user->id;
+    //     $this->name = $user->name;
+    //     $this->email = $user->email;
+    //     $this->emit('showModal', 'deleteUserModal');
+    // }
 
     private function initializedProperties()
     {
