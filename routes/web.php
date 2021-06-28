@@ -3,6 +3,8 @@
 use App\Http\Livewire\User\IndexUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Deposit\MasterDeposit;
+use App\Http\Livewire\Deposit\CreateDeposit;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -31,4 +33,6 @@ Route::group(['middleware' => ['auth']], function () {
     ], function () {
         Route::get('/', IndexUser::class)->name('users');
     });
+    Route::get('/deposit', MasterDeposit::class)->name('deposit');
+    Route::get('/form-deposit', CreateDeposit::class)->name('create_deposit');
 });

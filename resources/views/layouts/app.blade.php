@@ -39,7 +39,10 @@
                 <a class="navbar-brand" href="{{ route('home') }}">
                     Home
                 </a>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="{{route('create_deposit')}}">
+                    Form Deposit
+                </a>
+                <a class="navbar-brand" href="{{route('deposit')}}">
                     Deposit
                 </a>
                 <a class="navbar-brand" href="{{ route('users') }}">

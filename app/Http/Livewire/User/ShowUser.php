@@ -20,11 +20,12 @@ class ShowUser extends Component
 
     public function render()
     {
+        $user = User::where('name', 'like', '%' . $this->search . '%')
+            ->orWhere('email', 'like', '%' . $this->search . '%')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5);
         return view('livewire.user.show-user', [
-            'users' => User::where('name', 'like', '%' . $this->search . '%')
-                ->orWhere('email', 'like', '%' . $this->search . '%')
-                ->orderBy('created_at', 'DESC')
-                ->paginate(5)
+            'users' => $user
         ]);
     }
     // protected $listeners = [
@@ -65,7 +66,7 @@ class ShowUser extends Component
                 'type'  => 'success',
                 'message' => 'User Created Successfully'
             ]);
-            $this->emit('closeModal', 'createUserModal');
+            // $this->emit('closeModal', 'createUserModal');
             $this->emit('reloadUsers');
             $this->initializedProperties();
         } catch (\Throwable $th) {
@@ -87,7 +88,7 @@ class ShowUser extends Component
                 'type'  => 'success',
                 'message' => 'User Delete Successfully'
             ]);
-            $this->emit('closeModal', 'deleteUserModal');
+            // $this->emit('closeModal', 'deleteUserModal');
             $this->emit('reloadUsers');
             $this->initializedProperties();
         } catch (\Throwable $th) {
