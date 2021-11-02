@@ -13,7 +13,12 @@ class MasterDeposit extends Component
 
     public function render()
     {
-        $deposit    = Deposit::with('rekening')->get();
+        $deposit    = Deposit::join('rekening', 'rekening.id', 'deposit.rekening_id')
+            ->select([
+                'deposit.*',
+                'rekening.name'
+            ])
+            ->get();
         $count    = Deposit::with('rekening')->where('status', 'Pending')->count();
         // dd($deposit);
         return view('livewire.deposit.master-deposit', [
@@ -26,8 +31,9 @@ class MasterDeposit extends Component
     {
         DB::beginTransaction();
         try {
-            Deposit::findOrFail($depositId)->update([
-                'status'      => 'Pending',
+            $data = Deposit::findOrFail($depositId);
+            $data->update([
+                'status' => 'Pending',
             ]);
             $this->emit('flashMessage', [
                 'type'  => 'success',
@@ -48,7 +54,8 @@ class MasterDeposit extends Component
     {
         DB::beginTransaction();
         try {
-            Deposit::findOrFail($depositId)->update([
+            $data = Deposit::findOrFail($depositId);
+            $data->update([
                 'status'      => 'Approve',
             ]);
             $this->emit('flashMessage', [
@@ -64,5 +71,16 @@ class MasterDeposit extends Component
             ]);
         }
         DB::commit();
+    }
+
+    public function delete($id)
+    {
+        $data = Deposit::findOrFail($id);
+        $data->delete();
+        $this->emit('flashMessage', [
+            'type'  => 'success',
+            'message' => 'Deposit Deleted Successfully'
+        ]);
+        $this->emit('reloadDeposit');
     }
 }

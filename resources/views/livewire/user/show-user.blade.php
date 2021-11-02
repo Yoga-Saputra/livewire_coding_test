@@ -6,9 +6,9 @@
                 <div class="card-body">
                     <div class="row mb-2">
                         <div class="col-md-8">
-                            {{-- <button type="button" class="btn btn-primary" wire:click="$emitTo('user.create-user', 'createUser')">
+                            <button type="button" class="btn btn-primary" wire:click="$emitTo('user.create-user', 'createUser')">
                                 Create User
-                            </button> --}}
+                            </button>
                         </div>
                         <div class="col-md-4">
                             <input wire:model="search" type="text" class="form-control" placeholder="Search Product">

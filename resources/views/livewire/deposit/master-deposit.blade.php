@@ -88,7 +88,7 @@
                     @if ($deposit->status == 'Approve')
                         <tr class="text-center">
                             <td>{{ $index+1 }}</td>
-                            <td>{{ $deposit->rekening->name }}</td>
+                            <td>{{ $deposit->name }}</td>
                             <td>{{ $deposit->rekening_asal }}</td>
                             <td>{{ $deposit->jumlah }}</td>
                             <td>{{ $deposit->catatan }}</td>
